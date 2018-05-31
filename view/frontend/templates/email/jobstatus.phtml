@@ -1,0 +1,62 @@
+<?php
+/**
+ * KiwiCommerce
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer versions in the future.
+ * If you wish to customise this module for your needs.
+ * Please contact us https://kiwicommerce.co.uk/contacts.
+ *
+ * @category   KiwiCommerce
+ * @package    KiwiCommerce_CronScheduler
+ * @copyright  Copyright (C) 2018 Kiwi Commerce Ltd (https://kiwicommerce.co.uk/)
+ * @license    https://kiwicommerce.co.uk/magento2-extension-license/
+ */
+?>
+<?php $items = $block->getItems() ?>
+<?php if(!empty($items['errorMessages']->getData())) { ?>
+    <h3><strong>Fatal errors in store</strong></h3>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <?php echo __('Job Code'); ?>
+            </th>
+            <th>
+                <?php echo __('Error Message'); ?>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($items['errorMessages'] as $item) : ?>
+            <tr>
+                <td><?php echo $item->getJobCode(); ?></td>
+                <td><?php echo $item->getErrorMessage(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php } ?>
+
+<?php if(!empty($items['missedJobs']->getData())) { ?>
+    <h3><strong>Missed jobs in store</strong></h3>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <?php echo __('Job Code'); ?>
+            </th>
+            <th>
+                <?php echo __('Count'); ?>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($items['missedJobs'] as $item) : ?>
+            <tr>
+                <td><?php echo $item->getJobCode(); ?></td>
+                <td align="center"><?php echo $item->getTotalmissed(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php } ?>

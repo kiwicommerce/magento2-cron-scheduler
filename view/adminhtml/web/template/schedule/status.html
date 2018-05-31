@@ -1,0 +1,18 @@
+<!-- ko if: ($col.getLabel($row()) == "success") -->
+<span class='grid-severity-notice'><!-- ko i18n: 'SUCCESS' --><!-- /ko --></span>
+<!--/ko-->
+<!-- ko if: ($col.getLabel($row()) == "error") -->
+<span class='grid-severity-major'><!-- ko i18n: 'ERROR' --><!-- /ko --></span>
+<!--/ko-->
+<!-- ko if: ($col.getLabel($row()) == "missed") -->
+<span class='grid-severity-major'><!-- ko i18n: 'MISSED' --><!-- /ko --></span>
+<!--/ko-->
+<!-- ko if: ($col.getLabel($row()) == "running") -->
+<span class='grid-severity-running'><!-- ko i18n: 'RUNNING' --><!-- /ko --></span>
+<!--/ko-->
+<!-- ko if: ($col.getLabel($row()) == "killed") -->
+<span class='grid-severity-critical'><!-- ko i18n: 'KILLED' --><!-- /ko --></span>
+<!--/ko-->
+<!-- ko if: ($col.getLabel($row()) == "pending") -->
+<span class='grid-severity-minor'><!-- ko i18n: 'PENDING' --><!-- /ko --></span>
+<!--/ko-->

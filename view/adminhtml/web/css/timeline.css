@@ -1,0 +1,237 @@
+/**
+* KiwiCommerce
+*
+* Do not edit or add to this file if you wish to upgrade to newer versions in the future.
+* If you wish to customise this module for your needs.
+* Please contact us https://kiwicommerce.co.uk/contacts.
+*
+* @category   KiwiCommerce
+* @package    KiwiCommerce_CronScheduler
+* @copyright  Copyright (C) 2018 Kiwi Commerce Ltd (https://kiwicommerce.co.uk/)
+* @license    https://kiwicommerce.co.uk/magento2-extension-license/
+*/
+
+div.timeline-frame {
+    -moz-box-sizing: border-box;
+    border: 1px solid #bebebe;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+div.timeline-content {
+    overflow: hidden;
+    position: relative;
+}
+
+div.timeline-axis {
+    -moz-box-sizing: border-box;
+    border-color: #bebebe;
+    border-top-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+}
+
+div.timeline-axis-grid {
+    -moz-box-sizing: border-box;
+    border-left-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+}
+
+div.timeline-axis-grid-minor {
+    border-color: #e5e5e5;
+}
+
+div.timeline-axis-grid-major {
+    border-color: #bfbfbf;
+}
+
+div.timeline-axis-text {
+    color: #4d4d4d;
+    padding: 3px;
+    white-space: nowrap;
+}
+
+div.timeline-axis-text-minor {
+}
+
+div.timeline-axis-text-major {
+}
+
+div.timeline-event {
+    -moz-box-sizing: border-box;
+    background-color: #d5ddf6;
+    border-color: #97b0f8;
+    box-sizing: border-box;
+    color: #1a1a1a;
+    display: inline-block;
+}
+
+div.timeline-event-selected {
+    background-color: #fff785;
+    border-color: #ffc200;
+    z-index: 999;
+}
+
+/* TODO: use another color or pattern? */
+div.timeline-event-cluster {
+    color: #ffffff;
+}
+
+div.timeline-event-cluster div.timeline-event-dot {
+    border-color: #d5ddf6;
+}
+
+div.timeline-event-box {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+div.timeline-event-dot {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 5px;
+}
+
+div.timeline-event-range {
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+div.timeline-event-range-drag-left {
+    cursor: w-resize;
+    z-index: 1000;
+}
+
+div.timeline-event-range-drag-right {
+    cursor: e-resize;
+    z-index: 1000;
+}
+
+div.timeline-event-line {
+    -moz-box-sizing: border-box;
+    border-left-style: solid;
+    border-left-width: 1px;
+    box-sizing: border-box;
+}
+
+div.timeline-event-content {
+    margin: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+div.timeline-groups-axis {
+    -moz-box-sizing: border-box;
+    border-color: #bebebe;
+    border-width: 1px;
+    box-sizing: border-box;
+}
+
+div.timeline-groups-axis-onleft {
+    border-style: none solid none none;
+}
+
+div.timeline-groups-axis-onright {
+    border-style: none none none solid;
+}
+
+div.timeline-groups-text {
+    color: #4d4d4d;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div.timeline-currenttime {
+    -moz-box-sizing: border-box;
+    background-color: #ff7f6e;
+    box-sizing: border-box;
+    width: 2px;
+}
+
+div.timeline-customtime {
+    -moz-box-sizing: border-box;
+    background-color: #6e94ff;
+    box-sizing: border-box;
+    cursor: move;
+    width: 2px;
+}
+
+div.timeline-navigation {
+    -moz-border-radius: 2px;
+    -moz-box-sizing: border-box;
+    background-color: #f5f5f5;
+    border: 1px solid #bebebe;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: #808080;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+div.timeline-navigation-new,
+div.timeline-navigation-delete,
+div.timeline-navigation-zoom-in,
+div.timeline-navigation-zoom-out,
+div.timeline-navigation-move-left,
+div.timeline-navigation-move-right {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    height: 36px;
+    padding: 10px;
+    text-decoration: none;
+    width: 36px;
+}
+
+div.timeline-event {
+    min-width: 1px;
+    padding: 0px;
+    height: 36px;
+}
+
+div.timeline-event.success {
+    background:green;
+    border-color:green;
+}
+div.timeline-event.missed,
+div.timeline-event.error {
+    background:red;
+    border-color:red;
+}
+div.timeline-event.running {
+    background: #ffd400;
+    border-color: #ffd400;
+}
+
+div.timeline-event.pending {
+    background:#ea992e;
+    border-color:#ea992e;
+}
+.timeline-content {
+    border: 0px solid transparent !important;
+}
+
+#kiwicommercetimeline-tooltip {
+    background:white;
+    border: 1px solid black;
+    padding:5px;
+}
+#kiwicommercetimeline-tooltip table td {
+    padding:3px;
+    top: -5px;
+    left: 105%;
+}
+
+#kiwicommercetimeline-tooltip table tr td:first-child {
+    font-weight: bold;
+}

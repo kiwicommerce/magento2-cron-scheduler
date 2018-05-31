@@ -1,0 +1,89 @@
+Back,Back
+Save,Save
+"Execution stopped due to some error.","Execution stopped due to some error."
+"It is killed as running for longer period.","It is killed as running for longer period."
+"The cron job can not be deleted.","The cron job can not be deleted."
+"A total of 1 record(s) have been deleted.","A total of 1 record(s) have been deleted."
+"Edit Cron Job","Edit Cron Job"
+"Cron Scheduler","Cron Scheduler"
+"Cron Jobs","Cron Jobs"
+"Selected jobs can not be scheduled now.","Selected jobs can not be scheduled now."
+"You scheduled selected jobs now.","You scheduled selected jobs now."
+"Selected jobs can not be disabled.","Selected jobs can not be disabled."
+"You disabled selected jobs.","You disabled selected jobs."
+"Selected jobs can not be enabled.","Selected jobs can not be enabled."
+"You enabled selected jobs.","You enabled selected jobs."
+"Add New Cron Job","Add New Cron Job"
+"You saved the cron job.","You saved the cron job."
+"The cron job can not be saved.","The cron job can not be saved."
+"Cron Job Schedule List","Cron Job Schedule List"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Selected jobs can not be killed.","Selected jobs can not be killed."
+"It is killed by admin.","It is killed by admin."
+"Cron Scheduler Timeline","Cron Scheduler Timeline"
+CronScheduler,CronScheduler
+"Cron is Working","Cron is Working"
+"Last cron execution is older than %1 hour%2","Last cron execution is older than %1 hour%2"
+"Last cron execution is older than %1 minute%2","Last cron execution is older than %1 minute%2"
+"Last cron execution was %1 minute%2 ago","Last cron execution was %1 minute%2 ago"
+"No cron execution found","No cron execution found"
+Edit,Edit
+Delete,Delete
+"Delete job","Delete job"
+"Are you sure to delete the job?","Are you sure to delete the job?"
+"Top Running Cron Jobs","Top Running Cron Jobs"
+"We couldn't find any records.","We couldn't find any records."
+"Job Code","Job Code"
+"Error Message","Error Message"
+Count,Count
+ENABLE,ENABLE
+DISABLE,DISABLE
+SUCCESS,SUCCESS
+ERROR,ERROR
+MISSED,MISSED
+RUNNING,RUNNING
+KILLED,KILLED
+PENDING,PENDING
+"CronScheduler Job Status","CronScheduler Job Status"
+"Please enter a valid job code.","Please enter a valid job code."
+"Please enter valid class instance.","Please enter valid class instance."
+"Please enter valid class method.","Please enter valid class method."
+"Please enter a valid cron expression.","Please enter a valid cron expression."
+"Please enter a valid email address.","Please enter a valid email address."
+"KiwiCommerce Extensions","KiwiCommerce Extensions"
+General,General
+"Email Configuration","Email Configuration"
+"Schedule Now","Schedule Now"
+"Schedule jobs now","Schedule jobs now"
+"Are you sure to schedule selected jobs now?","Are you sure to schedule selected jobs now?"
+Enable,Enable
+"Enable jobs","Enable jobs"
+"Are you sure to enable selected jobs?","Are you sure to enable selected jobs?"
+Disable,Disable
+"Disable jobs","Disable jobs"
+"Are you sure to disable selected jobs?","Are you sure to disable selected jobs?"
+Group,Group
+Instance,Instance
+Method,Method
+Schedule,Schedule
+Type,Type
+Status,Status
+"Delete jobs","Delete jobs"
+"Are you sure to delete selected jobs?","Are you sure to delete selected jobs?"
+Kill,Kill
+"Kill jobs","Kill jobs"
+"Are you sure to kill selected jobs?","Are you sure to kill selected jobs?"
+ID,ID
+"CPU Usage(ms)","CPU Usage(ms)"
+"System Usage(ms)","System Usage(ms)"
+"Memory Usage(mb)","Memory Usage(mb)"
+Message,Message
+"Created at","Created at"
+"Scheduled at","Scheduled at"
+"Executed at","Executed at"
+"Finished at","Finished at"
+"Cron Job Information","Cron Job Information"
+"Ex: catalog_index_refresh_price.","Ex: catalog_index_refresh_price."
+"Ex : Magento\Catalog\Cron\RefreshSpecialPrices","Ex : Magento\Catalog\Cron\RefreshSpecialPrices"
+"Please enter method name to be executed. Ex: execute.","Please enter method name to be executed. Ex: execute."
+"Add multiple values using comma. Ex: * * * * *,* * * * 2.","Add multiple values using comma. Ex: * * * * *,* * * * 2."

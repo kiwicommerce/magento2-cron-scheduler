@@ -1,0 +1,82 @@
+<?php
+/**
+ * KiwiCommerce
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer versions in the future.
+ * If you wish to customise this module for your needs.
+ * Please contact us https://kiwicommerce.co.uk/contacts.
+ *
+ * @category   KiwiCommerce
+ * @package    KiwiCommerce_CronScheduler
+ * @copyright  Copyright (C) 2018 Kiwi Commerce Ltd (https://kiwicommerce.co.uk/)
+ * @license    https://kiwicommerce.co.uk/magento2-extension-license/
+ */
+?>
+
+<script type="text/javascript">
+
+    google.load("visualization", "1");
+
+    // Set callback to run when API is loaded
+    google.setOnLoadCallback(draw);
+
+    <?php $data = $block->getCronJobData();?>
+    var jsonData = <?php echo json_encode($data); ?>;
+
+    function draw() {
+
+        var options = {
+            stackEvents: false,
+            start: new Date(),
+            end: new Date(1000 * 60 * 60 * 24 + (new Date()).valueOf()),
+            animate: false,
+            eventMargin: 10,
+            eventMarginAxis: 5,
+            showMajorLabels: false,
+            cluster: false,
+            axisOnTop: true,
+            snapEvents: true,
+            dragAreaWidth: 20,
+            groupMinHeight: 35,
+            selectable: false
+        };
+
+        var timeline = new links.Timeline(document.getElementById('kiwicommercetimeline'), options);
+        timeline.setCurrentTime(<?php echo $block->getDateWithJs(); ?>);
+
+        // Create and populate a data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'start');
+        data.addColumn('datetime', 'end');
+        data.addColumn('string', 'content');
+        data.addColumn('string', 'group');
+        data.addColumn('string', 'className');
+
+        <?php $i = 0; foreach ($data as $row) : ?>
+        data.addRow([<?php echo $row[3]; ?>, <?php echo $row[4]; ?>, '', '<?php echo $row[0]; ?>', '<?php echo $i++ . " " . $row[1]; ?>']);
+        <?php endforeach; ?>
+
+        timeline.draw(data);
+    }
+</script>
+<div id="kiwicommercetimeline"></div>
+<div id="kiwicommercetimeline-tooltip" style="position:absolute; display:none"></div>
+<script>
+    require(["jquery", "jquery/ui"], function ($) {
+        $(function () {
+
+            $(document).on('mousemove', '.timeline-event', function (evt) {
+                var classnames = $(this).attr('class').split(' ');
+                if (classnames.length === 6) {
+                    $('#kiwicommercetimeline-tooltip').css({display: "block", top: (evt.pageY + 5) + "px", left: (evt.pageX + 5) + "px"});
+                    $('#kiwicommercetimeline-tooltip').html(jsonData[classnames[4]][2]);
+                }
+            });
+
+            $(document).on('mouseout', '.timeline-event', function (evt) {
+                $('#kiwicommercetimeline-tooltip').css({display: "none"});
+            });
+
+        });
+    });
+</script>

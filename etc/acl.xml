@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * KiwiCommerce
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer versions in the future.
+ * If you wish to customise this module for your needs.
+ * Please contact us https://kiwicommerce.co.uk/contacts.
+ *
+ * @category   KiwiCommerce
+ * @package    KiwiCommerce_CronScheduler
+ * @copyright  Copyright (C) 2018 Kiwi Commerce Ltd (https://kiwicommerce.co.uk/)
+ * @license    https://kiwicommerce.co.uk/magento2-extension-license/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="KiwiCommerce_CronScheduler::cronscheduler_configuration" title="CronScheduler Section" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::system">
+                    <resource id="KiwiCommerce_CronScheduler::menu" title="Cron Scheduler by KiwiCommerce" sortOrder="100" >
+                        <resource id="KiwiCommerce_CronScheduler::job_listing" title="Jobs Configuration List" sortOrder="10"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_schedule_listing" title="Cron Job Schedule List" sortOrder="20"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_schedule_timeline" title="Cron Job Schedule Timeline" sortOrder="30"/>
+                        <resource id="KiwiCommerce_CronScheduler::schedule_massdelete" title="Delete Schedule Jobs" sortOrder="40"/>
+                        <resource id="KiwiCommerce_CronScheduler::schedule_masskill" title="Kill Schedule Jobs" sortOrder="50"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_massschedule" title="Schedule Jobs Now" sortOrder="60"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_massstatuschange" title="Enable/Disable Jobs" sortOrder="70"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_addnewjob" title="Add New Job" sortOrder="80"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_editjob" title="Edit Job" sortOrder="90"/>
+                        <resource id="KiwiCommerce_CronScheduler::job_deletejob" title="Delete Job" sortOrder="100"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
