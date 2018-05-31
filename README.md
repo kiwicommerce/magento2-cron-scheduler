@@ -15,13 +15,13 @@ Find More details on <a href="https://kiwicommerce.co.uk/extensions/magento2-cro
 
 ### Cron Jobs
 
-You will have list of all cron jobs with their groups, cron expression, job code and other useful information.
+You will have a list of all cron jobs with their groups, cron expression, job code and other useful information.
 
 <img src="https://kiwicommerce.co.uk/wp-content/uploads/2018/05/cronjob.png"/><br/>
 
 ### Cron Job Schedule list
 
-You will have a list of schedule jobs with their respective status.
+You will have a list of scheduled jobs with their respective status.
 <img src="https://kiwicommerce.co.uk/wp-content/uploads/2018/05/schedule-list.png"/><br/>
 
 ### Add New Cron Job
@@ -32,7 +32,7 @@ You can create a new cron job by clicking on Add New Cron Job. You need to add d
 
 ### Timeline
 
-You will have beautiful timeline for each cron job.
+You will have a beautiful timeline for each cron job.
 
 <img src="https://kiwicommerce.co.uk/wp-content/uploads/2018/05/timeline.png" /> <br/>
 
@@ -42,7 +42,7 @@ You need to follow this path. Stores > Configuration > KIWICOMMERCE EXTENSIONS >
 
 <img src="https://kiwicommerce.co.uk/wp-content/uploads/2018/05/Configuration_cronscheduler.png"/> <br/>
 
-### Dashoboard
+### Dashboard
 
 You can analyze the actual time taken by each job on magento dashboard.
 
@@ -50,7 +50,7 @@ You can analyze the actual time taken by each job on magento dashboard.
 
 ## Documentation
 
-For more detail, please check the <a href="https://kiwicommerce.co.uk/docs/cron_scheduler/">Documentaion</a>.
+For more detail, please check the <a href="https://kiwicommerce.co.uk/docs/cron_scheduler/">Documentation</a>.
 
 ## Issue Reporting.
 Before doing issue reporting, please make sure you followed all <a href="https://kiwicommerce.co.uk/docs/issue_reporting_guidelines/">guidelines</a> properly.
