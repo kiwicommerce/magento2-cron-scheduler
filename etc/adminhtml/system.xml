@@ -16,12 +16,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="kiwicommerce" translate="label" sortOrder="9999">
-            <label>KiwiCommerce Extensions</label>
+            <label><![CDATA[<span class="kiwiCommerce-logo">KiwiCommerce Extensions</span>]]></label>
         </tab>
         <section id="cronscheduler" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Cron Scheduler</label>
             <tab>kiwicommerce</tab>
             <resource>KiwiCommerce_CronScheduler::cronscheduler_configuration</resource>
+            <group id="hint" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <frontend_model>KiwiCommerce\CronScheduler\Block\Adminhtml\System\Config\Fieldset\Hint</frontend_model>
+            </group>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
                 <field id="cronscheduler_email_enabled" translate="Receive Email" type="select" sortOrder="10" showInDefault="1">

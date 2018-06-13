@@ -2,7 +2,7 @@
     "name": "kiwicommerce/module-cron-scheduler",
     "description": "Magento 2 - Cron Scheduler",
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": [
         "OSL-3.0"
     ],
