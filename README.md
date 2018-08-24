@@ -20,7 +20,7 @@
 
  2. Command Line Installation
       - Backup your web directory and database.
-      - Download Cron Scheduler installation package from <a href="https://github.com/kiwicommerce/magento2-cron-scheduler/releases/download/v1.0.1/kiwicommerce-cron-scheduler-v101.zip">here</a>.
+      - Download Cron Scheduler installation package from <a href="https://github.com/kiwicommerce/magento2-cron-scheduler/releases/download/v1.0.2/kiwicommerce-cron-scheduler-v102.zip">here</a>.
       - Upload contents of the Cron Scheduler Log installation package to your Magento root directory.
       - Navigate to your Magento root folder<br />
           `cd path_to_the_magento_root_directory`<br />
