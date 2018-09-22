@@ -130,10 +130,10 @@ class MassKill extends \Magento\Backend\App\Action
                 }
             }
             if (!empty($killedScheduleIds)) {
-                $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been killed - ' . join(',', $killedScheduleIds),count($killedScheduleIds)));
+                $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been killed - ' . join(',', $killedScheduleIds), count($killedScheduleIds)));
             }
             if (!empty($errorScheduleIds)) {
-                $this->messageManager->addErrorMessage(__('A total of %1 record(s) can not be killed - ' . join(',', $errorScheduleIds),count($errorScheduleIds)));
+                $this->messageManager->addErrorMessage(__('A total of %1 record(s) can not be killed - ' . join(',', $errorScheduleIds), count($errorScheduleIds)));
             }
 
             return $this->_redirect('*/*/listing');

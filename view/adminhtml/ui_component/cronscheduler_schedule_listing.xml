@@ -150,8 +150,10 @@
         </column>
         <column name="job_code">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">KiwiCommerce\CronScheduler\Ui\Component\Listing\Column\Code\Options</item>
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Job Code</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                     <item name="sortable" xsi:type="boolean">true</item>
@@ -160,9 +162,11 @@
         </column>
         <column name="status">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">KiwiCommerce\CronScheduler\Ui\Component\Listing\Column\Status\Options</item>
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
+                    <item name="filter" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="dataType" xsi:type="string">select</item>
                     <item name="bodyTmpl" xsi:type="string">KiwiCommerce_CronScheduler/schedule/status</item>
                     <item name="sortOrder" xsi:type="number">30</item>
                     <item name="sortable" xsi:type="boolean">true</item>
