@@ -65,4 +65,17 @@ class Collection extends \Magento\Cron\Model\ResourceModel\Schedule\Collection
             return null;
         }
     }
+
+    /**
+     * Get Schedule task status
+     * @return $this
+     */
+    public function getScheduleTaskStatuses()
+    {
+        $this->getSelect()->reset('columns')
+            ->columns('DISTINCT(status) as status')
+            ->order('status ASC');
+
+        return $this;
+    }
 }
