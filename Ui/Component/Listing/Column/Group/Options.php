@@ -52,7 +52,8 @@ class Options implements \Magento\Framework\Data\OptionSourceInterface
             $configJobs = $this->cronConfig->getJobs();
             foreach (array_keys($configJobs) as $group) {
                 $this->options[] = [
-                    "label" => $group, "value" => $group
+                    "label" => __($group),
+                    "value" => $group
                 ];
             }
         }

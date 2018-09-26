@@ -55,7 +55,7 @@ class Options implements \Magento\Framework\Data\OptionSourceInterface
             foreach ($scheduleTaskStatuses as $scheduleTaskStatus) {
                 $status = $scheduleTaskStatus->getStatus();
                 $this->options[] = [
-                    "label" => strtoupper($status),
+                    "label" => __(strtoupper($status)),
                     "value" => $status
                 ];
             }
