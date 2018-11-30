@@ -42,7 +42,7 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Framework\App\Console\Request $request
      * @param \Magento\Framework\ShellInterface $shell
-     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @param \Magento\Framework\Process\PhpExecutableFinderFactory $phpExecutableFinderFactory
      * @param \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper
      * @param \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
@@ -55,14 +55,14 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Framework\App\Console\Request $request,
         \Magento\Framework\ShellInterface $shell,
-        \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
+        \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         \Magento\Framework\Process\PhpExecutableFinderFactory $phpExecutableFinderFactory,
         \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
         \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
     ) {
 
         $construct= "__construct"; // in order to bypass the compiler
-        parent::$construct($objectManager, $scheduleFactory, $cache, $config, $scopeConfig, $request, $shell, $timezone, $phpExecutableFinderFactory);
+        parent::$construct($objectManager, $scheduleFactory, $cache, $config, $scopeConfig, $request, $shell, $dateTime, $phpExecutableFinderFactory);
         $this->scheduleHelper = $scheduleHelper;
         $this->jobHelper = $jobHelper;
     }
@@ -97,7 +97,7 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         });
 
         $pendingJobs = $this->_getPendingSchedules();
-        $currentTime = $this->timezone->scopeTimeStamp();
+        $currentTime = $this->dateTime->scopeTimeStamp();
         $jobGroupsRoot = $this->_config->getJobs();
 
         $phpPath = $this->phpExecutableFinder->find() ?: 'php';
