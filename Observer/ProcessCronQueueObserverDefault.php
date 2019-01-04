@@ -25,7 +25,7 @@ use Magento\Framework\Profiler\Driver\Standard\StatFactory;
  * Class ProcessCronQueueObserver
  * @package KiwiCommerce\CronScheduler\Observer
  */
-class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueObserver
+class ProcessCronQueueObserverDefault extends \Magento\Cron\Observer\ProcessCronQueueObserver
 {
 
     /**
