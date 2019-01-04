@@ -26,7 +26,7 @@ $expectedVersion = [
     $explodedVersion[0]
 ];
 
-$data = [ "ProcessCronQueueObserver.php" ];
+$data = [ "ProcessCronQueueObserver.inc" ];
 $path = '';
 $foundVersion = '2.3';
 
@@ -47,14 +47,16 @@ foreach ($data as $file) {
 
 // Decide which class to be used on version comparison
 if ($foundVersion === '2_1') {
-    if (!\class_exists(ProcessCronQueueObserver_2_1::class)) {
-        require 'ProcessCronQueueObserver_2_1.php';
+    if (!\class_exists('\KiwiCommerce\CronScheduler\Observer\ProcessCronQueueObserver_2_1')) {
+        require 'ProcessCronQueueObserver_2_1.inc';
     }
+
     class ProcessCronQueueObserverExtended extends ProcessCronQueueObserver_2_1 { }
 } else {
-    if (!\class_exists(ProcessCronQueueObserverDefault::class)) {
-        require 'ProcessCronQueueObserverDefault.php';
+    if (!\class_exists('\KiwiCommerce\CronScheduler\Observer\ProcessCronQueueObserverDefault')) {
+        require 'ProcessCronQueueObserverDefault.inc';
     }
+
     class ProcessCronQueueObserverExtended extends ProcessCronQueueObserverDefault { }
 }
 
