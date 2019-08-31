@@ -1,11 +1,12 @@
 # Magento 2 - Cron Scheduler by [KiwiCommerce](https://kiwicommerce.co.uk/)
-- You can Easily setup cron job
-- Manage cron job from the backend
-- Have a beautiful and managed timeline feature
-- See the longest running cron job on Dashboard
-- Receive an email if any cron job produce a fatal error
-- Find the actual load on CPU/Memory by cron job execution
-- Automatically kill the long running job
+- Easily set up cron jobs
+- Manage cron jobs from the backend
+- Have an organised and easily managed timeline feature
+- See the longest running cron job
+- Receive an email notification if any cron job produces a fatal error
+- View the actual load on CPU/memory by cron job execution
+- Automatically stop long running jobs
+- Our Magento 2 extension Cron Scheduler is free to download.
 
 ## **Installation** 
 1. Composer Installation
