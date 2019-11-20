@@ -38,7 +38,9 @@
             snapEvents: true,
             dragAreaWidth: 20,
             groupMinHeight: 35,
-            selectable: false
+            selectable: false,
+            zoomMin: 0,
+            zoomMax: 1000 * 60 * 60 * 2
         };
 
         var timeline = new links.Timeline(document.getElementById('kiwicommercetimeline'), options);
@@ -60,7 +62,7 @@
     }
 </script>
 <div id="kiwicommercetimeline"></div>
-<div id="kiwicommercetimeline-tooltip" style="position:absolute; display:none"></div>
+<div id="kiwicommercetimeline-tooltip" style="position:absolute; z-index: 99999; display:none"></div>
 <script>
     require(["jquery", "jquery/ui"], function ($) {
         $(function () {

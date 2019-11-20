@@ -34,6 +34,15 @@ class Timeline extends \Magento\Backend\Block\Template
      * @var \KiwiCommerce\CronScheduler\Model\ResourceModel\Schedule\CollectionFactory
      */
     public $collectionFactory = null;
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
+     */
+    public $timezone;
+
+    /**
+     * @var \Magento\Framework\App\ProductMetadata
+     */
+    private $productMetaData;
 
     /**
      * Class constructor.
@@ -42,6 +51,7 @@ class Timeline extends \Magento\Backend\Block\Template
      * @param \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper
      * @param \KiwiCommerce\CronScheduler\Model\ResourceModel\Schedule\CollectionFactory $collectionFactory
      * @param \Magento\Framework\App\ProductMetadata $productMetaData
+     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone
      * @param array $data
      */
     public function __construct(
@@ -50,18 +60,22 @@ class Timeline extends \Magento\Backend\Block\Template
         \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
         \KiwiCommerce\CronScheduler\Model\ResourceModel\Schedule\CollectionFactory $collectionFactory,
         \Magento\Framework\App\ProductMetadata $productMetaData,
+        \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
         array $data = []
     ) {
         $this->datetime = $datetime;
         $this->scheduleHelper = $scheduleHelper;
         $this->collectionFactory = $collectionFactory;
-        $this->productMetaData = $productMetaData;
+        $this->productMetaData = $productMetaData; // todo need to this un-used variable
         parent::__construct($context, $data);
+        $this->timezone = $timezone;
     }
 
     /**
      * Get the data to construct the timeline
+     *
      * @return array
+     * @throws \Exception
      */
     public function getCronJobData()
     {
@@ -70,22 +84,21 @@ class Timeline extends \Magento\Backend\Block\Template
         $schedules->getSelect()->order('job_code');
 
         foreach ($schedules as $schedule) {
-            $start = $schedule->getExecutedAt();
-            $end = $schedule->getFinishedAt();
+            $start = $this->timezone->date($schedule->getData('executed_at'))->format('Y-m-d H:i:s');
+            $end = $this->timezone->date($schedule->getData('finished_at'))->format('Y-m-d H:i:s');
             $status = $schedule->getStatus();
 
             if ($start == null) {
-                $start = $end = $schedule->getScheduledAt();
+                $start = $end = $schedule->getData('scheduled_at');
             }
 
             if ($status == \Magento\Cron\Model\Schedule::STATUS_RUNNING) {
-                $end = $this->datetime->date('Y-m-d H:i:s');
+                $end = $this->timezone->date()->format('Y-m-d H:i:s');
             }
 
             if ($status == \Magento\Cron\Model\Schedule::STATUS_ERROR && $end == null) {
                 $end = $start;
             }
-
             $level   = $this->getStatusLevel($status);
             $tooltip = $this->getToolTip($schedule, $level, $status, $start, $end);
 
@@ -167,12 +180,12 @@ class Timeline extends \Magento\Backend\Block\Template
             . "<tr><td>"
             . "Created at"
             . "</td><td>"
-            . $schedule->getCreatedAt()
+            . $this->timezone->date($schedule->getData('created_at'))->format('Y-m-d H:i:s')
             . "</td></tr>"
             . "<tr><td>"
             . "Scheduled at"
             . "</td><td>"
-            . $schedule->getScheduledAt()
+            . $this->timezone->date($schedule->getData('scheduled_at'))->format('Y-m-d H:i:s')
             . "</td></tr>"
             . "<tr><td>"
             . "Executed at"

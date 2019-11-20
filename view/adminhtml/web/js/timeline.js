@@ -2055,15 +2055,18 @@ links.Timeline.prototype.repaintCurrentTime = function () {
         clearTimeout(this.currentTimeTimer);
         delete this.currentTimeTimer;
     }
-    var timeline = this;
-    var onTimeout = function () {
-        timeline.repaintCurrentTime();
-    };
-    // the time equal to the width of one pixel, divided by 2 for more smoothness
-    var interval = 1 / this.conversion.factor / 2;
-    if (interval < 30) {
-interval = 30; }
-    this.currentTimeTimer = setTimeout(onTimeout, interval);
+    if (this.options.animate) {
+        var timeline = this;
+        var onTimeout = function () {
+            timeline.repaintCurrentTime();
+        };
+        // the time equal to the width of one pixel, divided by 2 for more smoothness
+        var interval = 1 / this.conversion.factor / 2;
+        if (interval < 30) {
+            interval = 30;
+        }
+        this.currentTimeTimer = setTimeout(onTimeout, interval);
+    }
 };
 
 /**
