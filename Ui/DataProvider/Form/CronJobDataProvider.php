@@ -38,6 +38,10 @@ class CronJobDataProvider extends AbstractDataProvider
      * @var RequestInterface
      */
     public $request;
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    public $scopeConfig;
 
     /**
      * Class constructor.
@@ -46,6 +50,7 @@ class CronJobDataProvider extends AbstractDataProvider
      * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param RequestInterface $request
      * @param array $meta
      * @param array $data
@@ -56,7 +61,9 @@ class CronJobDataProvider extends AbstractDataProvider
         $requestFieldName,
         CollectionFactory $collectionFactory,
         \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         RequestInterface $request,
+
         array $meta = [],
         array $data = []
     ) {
@@ -64,6 +71,7 @@ class CronJobDataProvider extends AbstractDataProvider
         $this->collection = $collectionFactory->create();
         $this->jobHelper = $jobHelper;
         $this->request = $request;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -80,20 +88,13 @@ class CronJobDataProvider extends AbstractDataProvider
         $jobCode = $this->request->getParam('job_code');
         if (!empty($jobCode)) {
             if (isset($this->loadedData[$jobCode])) {
+                if ($configPath = $this->loadedData[$jobCode]['config_path']) {
+                    $this->loadedData[$jobCode]['schedule'] = $this->scopeConfig->getValue($configPath);
+                }
                 $this->loadedData[$jobCode]['oldexpressionvalue'] = $this->loadedData[$jobCode]['schedule'];
             }
         }
 
         return $this->loadedData;
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return array
-     */
-    public function getMeta()
-    {
-        $meta = parent::getMeta();
-        return $meta;
     }
 }
