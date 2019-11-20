@@ -66,6 +66,11 @@ class Sendemail extends \Magento\Backend\App\Action
     public $logger;
 
     /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    public $dateTime;
+
+    /**
      * Test Email Template Name
      */
     const TEST_EMAIL_TEMPLATE = 'cronscheduler_email_template';
