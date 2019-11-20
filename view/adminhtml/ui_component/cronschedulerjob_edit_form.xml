@@ -136,7 +136,6 @@
                     <item name="label" xsi:type="string" translate="true">Status</item>
                     <item name="formElement" xsi:type="string">select</item>
                     <item name="source" xsi:type="string">cronscheduler</item>
-                    <item name="disabled" xsi:type="boolean">true</item>
                     <item name="dataScope" xsi:type="string">is_active</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
