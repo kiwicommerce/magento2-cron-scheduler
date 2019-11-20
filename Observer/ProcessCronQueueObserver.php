@@ -47,15 +47,11 @@ foreach ($data as $file) {
 
 // Decide which class to be used on version comparison
 if ($foundVersion === '2_1') {
-    if (!\class_exists('\KiwiCommerce\CronScheduler\Observer\ProcessCronQueueObserver_2_1')) {
-        require 'ProcessCronQueueObserver_2_1.inc';
-    }
+    require __DIR__ . '/ProcessCronQueueObserver_2_1.inc';
 
     class ProcessCronQueueObserverExtended extends ProcessCronQueueObserver_2_1 { }
 } else {
-    if (!\class_exists('\KiwiCommerce\CronScheduler\Observer\ProcessCronQueueObserverDefault')) {
-        require 'ProcessCronQueueObserverDefault.inc';
-    }
+    require __DIR__ . '/ProcessCronQueueObserverDefault.inc';
 
     class ProcessCronQueueObserverExtended extends ProcessCronQueueObserverDefault { }
 }
