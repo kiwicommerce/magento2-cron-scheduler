@@ -227,12 +227,13 @@ class Sendemail extends \Magento\Backend\App\Action
 
         $this->inlineTranslation->suspend();
 
-        $transport = $this->transportBuilder->setTemplateIdentifier(self::TEST_EMAIL_TEMPLATE)
+        $this->transportBuilder->setTemplateIdentifier(self::TEST_EMAIL_TEMPLATE)
             ->setTemplateOptions($templateOptions)
             ->setTemplateVars($templateVars)
             ->setFrom($from)
-            ->addTo($to)
-            ->getTransport();
+            ->addTo($to);
+
+        $transport = $this->transportBuilder->getTransport();
         $transport->sendMessage();
 
         $this->inlineTranslation->resume();
