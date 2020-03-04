@@ -56,6 +56,11 @@ class Cronjob extends \Magento\Framework\App\Helper\AbstractHelper
     const CRON_XML = 'xml';
 
     /**
+     * Cron job other
+     */
+    const CRON_OTHER = 'other';
+
+    /**
      * Class constructor.
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Cron\Model\Config\Reader\Db $dbReader
@@ -294,6 +299,8 @@ class Cronjob extends \Magento\Framework\App\Helper\AbstractHelper
             $result = self::CRON_DB;
         } elseif ($xml && !$db) {
             $result = self::CRON_XML;
+        } else {
+            $result = self::CRON_OTHER;
         }
 
         return $result;
