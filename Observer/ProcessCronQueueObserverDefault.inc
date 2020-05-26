@@ -95,7 +95,9 @@ class ProcessCronQueueObserverDefault extends \Magento\Cron\Observer\ProcessCron
         StatFactory $statFactory,
         \Magento\Framework\Lock\LockManagerInterface $lockManager,
         \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
-        \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
+        \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper,
+        \Magento\Framework\Event\ManagerInterface $eventManager,
+        \Magento\Cron\Model\DeadlockRetrierInterface $retrier
     ) {
 
         $construct = "__construct"; // in order to bypass the compiler
