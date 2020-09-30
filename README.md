@@ -13,7 +13,9 @@
       - Navigate to your Magento root folder<br />
             `cd path_to_the_magento_root_directory`
       - Then run the following command<br />
-            `composer require kiwicommerce/module-cron-scheduler`
+            `composer require kiwicommerce/module-cron-scheduler`<br />
+            For Magento version < v2.3.5, please use the following older version<br />
+            `composer require kiwicommerce/module-cron-scheduler:1.0.6`
       - Make sure that composer finished the installation without errors
 
  2. Command Line Installation
