@@ -2,7 +2,7 @@
     "name": "kiwicommerce/module-cron-scheduler",
     "description": "Easily set up and manage cron jobs from the backend with a beautiful and managed timeline feature. Find the actual load on CPU/Memory by cron job execution.",
     "type": "magento2-module",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "license": [
         "OSL-3.0"
     ],
