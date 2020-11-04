@@ -1,3 +1,5 @@
+# We're not maintaining this extension, if you need any support please contact us at hello@kiwicommerce.co.uk
+
 # Magento 2 - Cron Scheduler by [KiwiCommerce](https://kiwicommerce.co.uk/)
 - Easily set up cron jobs
 - Manage cron jobs from the backend
