@@ -1,5 +1,3 @@
-# We're not maintaining this extension, if you need any support please contact us at hello@kiwicommerce.co.uk
-
 # Magento 2 - Cron Scheduler by [KiwiCommerce](https://kiwicommerce.co.uk/)
 - Easily set up cron jobs
 - Manage cron jobs from the backend
@@ -81,6 +79,10 @@ Feel free to get in touch with us at https://kiwicommerce.co.uk/get-in-touch/
 * [Magento 2 Admin Activity](https://kiwicommerce.co.uk/extensions/magento2-admin-activity/)
 * [Magento 2 Customer Password](https://github.com/kiwicommerce/magento2-customer-password/)
 
+### Compatibility
+-Magento 2.4.6
+
+-Magento 2.4.7
 ## Contribution
 Well unfortunately there is no formal way to contribute, we would encourage you to feel free and contribute by:
  
