@@ -128,9 +128,7 @@ class JobProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
         #filters
         foreach ($this->likeFilters as $column => $value) {
-            $data = array_filter($data, function ($item) use ($column, $value) {
-                return stripos($item[$column], $value) !== false;
-            });
+            $data = array_filter($data, fn($item) => stripos((string) $item[$column], (string) $value) !== false);
         }
 
         #pagination

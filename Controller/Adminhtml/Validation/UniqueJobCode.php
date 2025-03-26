@@ -48,7 +48,7 @@ class UniqueJobCode extends \Magento\Backend\App\Action
     {
         if ($this->getRequest()->isXmlHttpRequest()) {
             $data = $this->getRequest()->getPostValue();
-            $jobcode = trim($data['jobcode']);
+            $jobcode = trim((string) $data['jobcode']);
 
             $data = array_values($this->jobHelper->getJobData());
             $existingjobcode = array_column($data, 'code');

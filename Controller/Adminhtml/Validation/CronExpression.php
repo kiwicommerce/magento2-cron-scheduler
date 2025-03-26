@@ -40,7 +40,7 @@ class CronExpression extends \Magento\Backend\App\Action
     {
         if ($this->getRequest()->isXmlHttpRequest()) {
             $data = $this->getRequest()->getPostValue();
-            $exprArray = explode(',', $data['expression']);
+            $exprArray = explode(',', (string) $data['expression']);
             $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
             $result = true;
             foreach ($exprArray as $expr) {

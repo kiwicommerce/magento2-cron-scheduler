@@ -33,10 +33,6 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
      */
     private $invalid = [];
     /**
-     * @var \KiwiCommerce\CronScheduler\Helper\Cronjob
-     */
-    private $jobHelper = null;
-    /**
      * @var \Magento\Framework\Lock\LockManagerInterface
      */
     private $lockManager;
@@ -44,10 +40,6 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
      * @var \Psr\Log\LoggerInterface
      */
     private $logger;
-    /**
-     * @var \KiwiCommerce\CronScheduler\Helper\Schedule
-     */
-    private $scheduleHelper = null;
     /**
      * @var Stat
      */
@@ -93,8 +85,8 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Magento\Cron\Model\DeadlockRetrierInterface $retrier,
         \Laminas\Http\PhpEnvironment\Request $environment,
-        \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
-        \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
+        private readonly \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
+        private readonly \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
     ) {
         parent::__construct(
             $objectManager, $scheduleFactory, $cache, $config, $scopeConfig,
@@ -104,8 +96,6 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         $this->state = $state;
         $this->statProfiler = $statFactory->create();
         $this->lockManager = $lockManager;
-        $this->scheduleHelper = $scheduleHelper;
-        $this->jobHelper = $jobHelper;
     }
 
     /**
@@ -340,10 +330,8 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         // sort jobs groups to start from used in separated process
         uksort(
             $jobGroupsRoot,
-            function ($a, $b) {
-                return $this->getCronGroupConfigurationValue($b, 'use_separate_process')
-                    - $this->getCronGroupConfigurationValue($a, 'use_separate_process');
-            }
+            fn($a, $b) => $this->getCronGroupConfigurationValue($b, 'use_separate_process')
+                - $this->getCronGroupConfigurationValue($a, 'use_separate_process')
         );
 
         $phpPath = $this->phpExecutableFinder->find() ?: 'php';
@@ -589,12 +577,12 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
                 // process only on job per run
                 continue;
             }
-            $jobConfig = isset($jobsRoot[$schedule->getJobCode()]) ? $jobsRoot[$schedule->getJobCode()] : null;
+            $jobConfig = $jobsRoot[$schedule->getJobCode()] ?? null;
             if (!$jobConfig) {
                 continue;
             }
 
-            $scheduledTime = strtotime($schedule->getScheduledAt());
+            $scheduledTime = strtotime((string) $schedule->getScheduledAt());
             if ($scheduledTime > $currentTime) {
                 continue;
             }

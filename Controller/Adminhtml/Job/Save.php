@@ -66,7 +66,7 @@ class Save extends \Magento\Backend\App\Action
             if ($data) {
                 $data = $this->jobHelper->trimArray($data);
                 #Cron Expression Array
-                $cronExprArray = $this->jobHelper->trimArray(explode(',', $data['schedule']));
+                $cronExprArray = $this->jobHelper->trimArray(explode(',', (string) $data['schedule']));
                 $jobData = $this->jobHelper->getJobData();
                 $flagMultipleExpression = false;
 
