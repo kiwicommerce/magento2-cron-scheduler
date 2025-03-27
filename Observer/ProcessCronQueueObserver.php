@@ -134,8 +134,9 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
                 sprintf('Invalid callback: %s::%s can\'t be called', $jobConfig['instance'], $jobConfig['method'])
             );
         }
+        //  $scheduledTime) is used to avoid time zone issues
 
-        $schedule->setExecutedAt(strftime('%Y-%m-%d %H:%M:%S', $this->dateTime->gmtTimestamp()))->save();
+        $schedule->setExecutedAt(date('Y-m-d H:i:s', $this->dateTime->gmtTimestamp()))->save();
 
         $this->startProfiling();
         try {
@@ -167,8 +168,8 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         $schedule->setStatus(
             Schedule::STATUS_SUCCESS
         )->setFinishedAt(
-            strftime(
-                '%Y-%m-%d %H:%M:%S',
+            date(
+                'Y-m-d H:i:s',
                 $this->dateTime->gmtTimestamp()
             )
         );

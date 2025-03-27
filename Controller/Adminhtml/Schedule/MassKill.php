@@ -119,7 +119,7 @@ class MassKill extends \Magento\Backend\App\Action
                 if (function_exists('posix_getsid') && posix_getsid($pid) === false) {
                     $errorScheduleIds[] = $scheduleId;
                 } else {
-                    $finished_at = strftime('%Y-%m-%d %H:%M:%S', $this->dateTime->gmtTimestamp());
+                    $finished_at = date('Y-m-d H:i:s', $this->dateTime->gmtTimestamp());
                     $dbrunningjobs->setData('status', self::STATUS_KILLED);
                     $dbrunningjobs->setData('messages', __('It is killed by admin.'));
                     $dbrunningjobs->setData('finished_at', $finished_at);

@@ -125,7 +125,7 @@ class Schedule extends \Magento\Framework\App\Helper\AbstractHelper
         $matches = [];
         preg_match('/(\d+-\d+-\d+)T(\d+:\d+)/', (string) $time, $matches);
         $time = $matches[1] . " " . $matches[2];
-        return strftime('%Y-%m-%d %H:%M:00', strtotime($time));
+        return date('Y-m-d H:i:s', strtotime($time));
     }
 
     /**
