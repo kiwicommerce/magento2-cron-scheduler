@@ -120,17 +120,15 @@ class JobProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $sortDir = $this->sortDir;
         usort($data, function ($a, $b) use ($sortField, $sortDir) {
             if ($sortDir == "asc") {
-                return $a[$sortField] > $b[$sortField];
+                return ($a[$sortField] > $b[$sortField]) ? -1 : (($a[$sortField] <  $b[$sortField]) ? 1 : 0);
             } else {
-                return $a[$sortField] < $b[$sortField];
+                return ($a[$sortField] < $b[$sortField]) ? -1 : (($a[$sortField] >  $b[$sortField]) ? 1 : 0);
             }
         });
 
         #filters
         foreach ($this->likeFilters as $column => $value) {
-            $data = array_filter($data, function ($item) use ($column, $value) {
-                return stripos($item[$column], $value) !== false;
-            });
+            $data = array_filter($data, fn($item) => stripos((string) $item[$column], (string) $value) !== false);
         }
 
         #pagination

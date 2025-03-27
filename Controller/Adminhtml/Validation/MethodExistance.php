@@ -40,8 +40,8 @@ class MethodExistance extends \Magento\Backend\App\Action
     {
         if ($this->getRequest()->isXmlHttpRequest()) {
             $data = $this->getRequest()->getPostValue();
-            $classpath = trim($data['classpath']);
-            $methodname = trim($data['methodname']);
+            $classpath = trim((string) $data['classpath']);
+            $methodname = trim((string) $data['methodname']);
             $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
             $result = false;
 

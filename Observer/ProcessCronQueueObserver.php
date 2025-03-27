@@ -33,10 +33,6 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
      */
     private $invalid = [];
     /**
-     * @var \KiwiCommerce\CronScheduler\Helper\Cronjob
-     */
-    private $jobHelper = null;
-    /**
      * @var \Magento\Framework\Lock\LockManagerInterface
      */
     private $lockManager;
@@ -44,10 +40,6 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
      * @var \Psr\Log\LoggerInterface
      */
     private $logger;
-    /**
-     * @var \KiwiCommerce\CronScheduler\Helper\Schedule
-     */
-    private $scheduleHelper = null;
     /**
      * @var Stat
      */
@@ -92,19 +84,18 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         \Magento\Framework\Lock\LockManagerInterface $lockManager,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Magento\Cron\Model\DeadlockRetrierInterface $retrier,
-        \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
-        \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
+        \Laminas\Http\PhpEnvironment\Request $environment,
+        private readonly \KiwiCommerce\CronScheduler\Helper\Schedule $scheduleHelper,
+        private readonly \KiwiCommerce\CronScheduler\Helper\Cronjob $jobHelper
     ) {
         parent::__construct(
             $objectManager, $scheduleFactory, $cache, $config, $scopeConfig,
             $request, $shell, $dateTime, $phpExecutableFinderFactory, $logger,
-            $state, $statFactory, $lockManager, $eventManager, $retrier);
+            $state, $statFactory, $lockManager, $eventManager, $retrier, $environment);
         $this->logger = $logger;
         $this->state = $state;
         $this->statProfiler = $statFactory->create();
         $this->lockManager = $lockManager;
-        $this->scheduleHelper = $scheduleHelper;
-        $this->jobHelper = $jobHelper;
     }
 
     /**
@@ -143,8 +134,9 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
                 sprintf('Invalid callback: %s::%s can\'t be called', $jobConfig['instance'], $jobConfig['method'])
             );
         }
+        //  $scheduledTime) is used to avoid time zone issues
 
-        $schedule->setExecutedAt(strftime('%Y-%m-%d %H:%M:%S', $this->dateTime->gmtTimestamp()))->save();
+        $schedule->setExecutedAt(date('Y-m-d H:i:s', $this->dateTime->gmtTimestamp()))->save();
 
         $this->startProfiling();
         try {
@@ -176,8 +168,8 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         $schedule->setStatus(
             Schedule::STATUS_SUCCESS
         )->setFinishedAt(
-            strftime(
-                '%Y-%m-%d %H:%M:%S',
+            date(
+                'Y-m-d H:i:s',
                 $this->dateTime->gmtTimestamp()
             )
         );
@@ -339,10 +331,8 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
         // sort jobs groups to start from used in separated process
         uksort(
             $jobGroupsRoot,
-            function ($a, $b) {
-                return $this->getCronGroupConfigurationValue($b, 'use_separate_process')
-                    - $this->getCronGroupConfigurationValue($a, 'use_separate_process');
-            }
+            fn($a, $b) => $this->getCronGroupConfigurationValue($b, 'use_separate_process')
+                - $this->getCronGroupConfigurationValue($a, 'use_separate_process')
         );
 
         $phpPath = $this->phpExecutableFinder->find() ?: 'php';
@@ -588,12 +578,12 @@ class ProcessCronQueueObserver extends \Magento\Cron\Observer\ProcessCronQueueOb
                 // process only on job per run
                 continue;
             }
-            $jobConfig = isset($jobsRoot[$schedule->getJobCode()]) ? $jobsRoot[$schedule->getJobCode()] : null;
+            $jobConfig = $jobsRoot[$schedule->getJobCode()] ?? null;
             if (!$jobConfig) {
                 continue;
             }
 
-            $scheduledTime = strtotime($schedule->getScheduledAt());
+            $scheduledTime = strtotime((string) $schedule->getScheduledAt());
             if ($scheduledTime > $currentTime) {
                 continue;
             }

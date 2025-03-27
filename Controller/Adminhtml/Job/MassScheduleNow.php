@@ -114,11 +114,11 @@ class MassScheduleNow extends \Magento\Backend\App\Action
 
                     $magentoVersion = $this->scheduleHelper->getMagentoversion();
                     if (version_compare($magentoVersion, "2.2.0") >= 0) {
-                        $createdAt  = strftime('%Y-%m-%d %H:%M:%S', $this->dateTime->gmtTimestamp());
-                        $scheduleAt = strftime('%Y-%m-%dT%H:%M:%S', $this->dateTime->gmtTimestamp());
+                        $createdAt  = date('Y-m-d H:i:s', $this->dateTime->gmtTimestamp());
+                        $scheduleAt = date('Y-m-d H:i:s', $this->dateTime->gmtTimestamp());
                     } else {
-                        $createdAt  = strftime('%Y-%m-%d %H:%M:%S', $this->timezone->scopeTimeStamp());
-                        $scheduleAt = strftime('%Y-%m-%dT%H:%M:%S', $this->timezone->scopeTimeStamp());
+                        $createdAt  = date('Y-m-d H:i:s', $this->timezone->scopeTimeStamp());
+                        $scheduleAt = date('Y-m-d H:i:s', $this->timezone->scopeTimeStamp());
                     }
 
                     $collection->setData('job_code', $jobCode);

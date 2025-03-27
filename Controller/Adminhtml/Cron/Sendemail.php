@@ -127,7 +127,7 @@ class Sendemail extends \Magento\Backend\App\Action
             $emailItems['missedJobs']    = $this->getMissedCronJob();
 
             $receiverEmailConfig = $this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-            $receiverEmailIds = explode(',', $receiverEmailConfig);
+            $receiverEmailIds = explode(',', (string) $receiverEmailConfig);
 
             if (!empty($receiverEmailIds) && (!empty($emailItems['errorMessages']->getData()) || !empty($emailItems['missedJobs']->getData()))) {
                 try {

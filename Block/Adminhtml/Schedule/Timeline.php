@@ -132,23 +132,13 @@ class Timeline extends \Magento\Backend\Block\Template
      */
     private function getStatusLevel($status)
     {
-        switch ($status) {
-            case \Magento\Cron\Model\Schedule::STATUS_ERROR:
-            case \Magento\Cron\Model\Schedule::STATUS_MISSED:
-                $level = 'major';
-                break;
-            case \Magento\Cron\Model\Schedule::STATUS_RUNNING:
-                $level = 'running';
-                break;
-            case \Magento\Cron\Model\Schedule::STATUS_PENDING:
-                $level = 'minor';
-                break;
-            case \Magento\Cron\Model\Schedule::STATUS_SUCCESS:
-                $level = 'notice';
-                break;
-            default:
-                $level = 'critical';
-        }
+        $level = match ($status) {
+            \Magento\Cron\Model\Schedule::STATUS_ERROR, \Magento\Cron\Model\Schedule::STATUS_MISSED => 'major',
+            \Magento\Cron\Model\Schedule::STATUS_RUNNING => 'running',
+            \Magento\Cron\Model\Schedule::STATUS_PENDING => 'minor',
+            \Magento\Cron\Model\Schedule::STATUS_SUCCESS => 'notice',
+            default => 'critical',
+        };
 
         return $level;
     }
@@ -199,8 +189,8 @@ class Timeline extends \Magento\Backend\Block\Template
             . "</td></tr>";
 
         if ($status== "success") {
-            $timeFirst  = strtotime($start);
-            $timeSecond = strtotime($end);
+            $timeFirst  = strtotime((string) $start);
+            $timeSecond = strtotime((string) $end);
             $differenceInSeconds = $timeSecond - $timeFirst;
 
             $tooltip .= "<tr><td>"

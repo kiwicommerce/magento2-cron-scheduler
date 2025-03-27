@@ -181,9 +181,7 @@ class Cronjob extends \Magento\Framework\App\Helper\AbstractHelper
         $result = [];
         #filters
         foreach ($filters as $column => $value) {
-            $data = array_filter($data, function ($item) use ($column, $value) {
-                return stripos($item[$column], $value) !== false;
-            });
+            $data = array_filter($data, fn($item) => stripos((string) $item[$column], (string) $value) !== false);
         }
 
         if (!empty($data)) {
