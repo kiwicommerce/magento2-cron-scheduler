@@ -9,21 +9,11 @@
 - Our Magento 2 extension Cron Scheduler is free to download.
 
 ## **Installation** 
-1. Composer Installation
-      - Navigate to your Magento root folder<br />
-            `cd path_to_the_magento_root_directory`
-      - Then run the following command<br />
-            `composer require kiwicommerce/module-cron-scheduler`<br />
-            For Magento version < v2.3.5, please use the following older version<br />
-            `composer require kiwicommerce/module-cron-scheduler:1.0.6`
-      - Make sure that composer finished the installation without errors
-
- 2. Command Line Installation
-      - Backup your web directory and database.
-      - Download the latest Cron Scheduler installation package kiwicommerce-cron-scheduler-vvvv.zip from [here](https://github.com/kiwicommerce/magento2-cron-scheduler/releases)
+  Command Line Installation
+      - Download the latest Cron Scheduler installation package kiwicommerce-cron-scheduler-vvvv.zip from [here](https://kiwicommerce.co.uk/product/cron-scheduler/)
+      - Upload contents of the Cron Scheduler installation package to your Magento app/code directory
       - Navigate to your Magento root folder<br />
             `cd path_to_the_magento_root_directory`<br />
-      - Upload contents of the Cron Scheduler installation package to your Magento root directory
       - Then run the following command<br />
             `php bin/magento module:enable KiwiCommerce_CronScheduler`<br />
    
@@ -36,7 +26,7 @@ php bin/magento cache:flush
 ```
 - Log out from the backend and login again.
 
-Find More details on [KiwiCommerce](https://kiwicommerce.co.uk/extensions/magento2-cron-scheduler)
+Find More details on [KiwiCommerce](https://kiwicommerce.co.uk/product/cron-scheduler/)
 
 ## Features
 ### Cron Jobs
